@@ -1,4 +1,5 @@
 import "./styles.css";
+import { format, formatDistance } from "date-fns";
 
 class todoItem {
   constructor(title, description, dueDate, priority) {
@@ -112,10 +113,46 @@ class Project {
   }
 
   //This is basically a toggle switch something lol
-  checkItem(index) {
+  checkOffItem(index) {
     if (this.todoList[index]) {
       this.todoList[index].changeIsDoneStatus();
       return 1;
+    } else {
+      return 0;
+    }
+  }
+
+  getCompletedItems() {
+    let completedList = [];
+    for (let i = 0; i < this.todoList.length; i++) {
+      if (this.todoList[i].isDone == 1) {
+        completedList.push(this.todoList[i]);
+      }
+    }
+    return completedList;
+  }
+
+  getUncompletedItems() {
+    let uncompletedList = [];
+    for (let i = 0; i < this.todoList.length; i++) {
+      if (this.todoList[i].isDone == 0) {
+        uncompletedList.push(this.todoList[i]);
+      }
+    }
+    return uncompletedList;
+  }
+
+  getIndexOfItem(item) {
+    return this.todoList.indexOf(item);
+  }
+
+  getAllItems() {
+    return this.todoList;
+  }
+
+  getItem(index) {
+    if (this.todoList[index]) {
+      return this.todoList[index];
     } else {
       return 0;
     }

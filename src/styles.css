@@ -8,6 +8,18 @@ body {
   font-family: sans-serif;
 }
 
+button,
+input[type="submit"],
+input[type="reset"] {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
 html,
 body {
   height: 100%;
@@ -29,7 +41,7 @@ h2 {
   width: 95%;
   display: grid;
   grid-template-columns: 26% auto;
-  column-gap: 5px;
+  column-gap: 2px;
 }
 
 .projects {
@@ -40,7 +52,7 @@ h2 {
 .task-section {
   display: flex;
   justify-content: space-between;
-  column-gap: 5px;
+  column-gap: 2px;
 }
 
 .tasks {
@@ -78,9 +90,121 @@ hr {
   background: #e5e6e7;
   font-size: 0;
   border: 0;
+  margin-bottom: 15px;
+  margin-top: 15px;
 }
 
 .task-item-title {
   font-size: x-large;
   margin: 15px 10px;
+}
+
+.project-title {
+  font-size: large;
+  color: #353841;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  padding: 10px;
+  align-items: center;
+}
+
+.folder-icon {
+  height: 32px;
+  width: 32px;
+}
+
+.add-project-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.button-text {
+  color: #4292e3;
+  font-weight: 550;
+  font-size: medium;
+}
+
+.button-icon {
+  height: 32px;
+  width: 32px;
+  margin-right: 10px;
+}
+
+.add-task-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+}
+
+.add-task-text {
+  color: white;
+  font-size: medium;
+  font-weight: 550;
+}
+
+.add-task-button {
+  background-color: #4292e3;
+  border-radius: 5px;
+  padding: 5px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkbox-empty,
+.checkbox-filled {
+  width: 32px;
+  height: 32px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 15px;
+}
+
+.todo-item-left,
+.todo-item-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.priority[priority="4"] {
+  background-color: #f1ca74;
+  color: #353841;
+  font-weight: 550;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.priority[priority="1"] {
+  background-color: #77a687;
+  color: white;
+  font-weight: 550;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.todo-item-text {
+  color: #353841;
+  font-size: medium;
+  font-weight: 550;
+}
+
+.task-item-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+textarea {
+  border-radius: 10px;
+  padding: 10px;
+  font-size: medium;
+  font-weight: 500;
+  border: #b2b2b2 solid 2px;
 }

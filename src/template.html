@@ -10,15 +10,75 @@
       <div class="projects">
         <h1 class="projects-title">Projects</h1>
         <hr />
+        <div class="project-title">
+          <img class="folder-icon" src="assets/folder.svg" />Work
+        </div>
+        <div class="project-title">
+          <img class="folder-icon" src="assets/folder.svg" />Groceries
+        </div>
+        <div class="project-title">
+          <img class="folder-icon" src="assets/folder.svg" />Travel
+        </div>
+        <hr />
+        <button class="add-project-button">
+          <img class="button-icon" src="assets/plus.svg" />
+          <span class="button-text">Add Project</span>
+        </button>
       </div>
       <div class="task-section">
         <div class="tasks">
-          <h1 class="tasks-title">All Tasks</h1>
+          <h1 class="tasks-title">Work</h1>
           <hr />
+          <button class="add-task-button">
+            <img class="add-task-icon" src="assets/plus-white.svg" />
+            <span class="add-task-text">Add Task</span>
+          </button>
+          <hr />
+          <div class="tasks-todo">
+            <div class="todo-item">
+              <div class="todo-item-left">
+                <img class="checkbox-empty" src="assets/checkbox-empty.svg" />
+                <span class="todo-item-text">Finish report</span>
+              </div>
+              <div class="todo-item-right">
+                <span class="priority" priority="4">High</span>
+                <span class="due-date">Due: Sep 15</span>
+              </div>
+            </div>
+            <hr />
+            <div class="todo-item">
+              <div class="todo-item-left">
+                <img class="checkbox-filled" src="assets/checkbox-filled.svg" />
+                <span class="todo-item-text">Submit code</span>
+              </div>
+              <div class="todo-item-right">
+                <span class="priority" priority="1">Low</span>
+                <span class="due-date">Due: Sep 17</span>
+              </div>
+            </div>
+            <hr />
+          </div>
         </div>
         <div class="task-item">
           <h2 class="task-item-title">Finish report</h2>
           <hr />
+          <div class="task-item-details">
+            <span class="item-due-date"
+              >Due Date: <input type="date" value="2026-09-17"
+            /></span>
+            <span class="item-priority"
+              >Priority:
+              <select name="priority">
+                <option value="1">Low</option>
+                <option value="2">Medium-Low</option>
+                <option value="3">Medium-High</option>
+                <option value="4">High</option>
+              </select>
+            </span>
+            <hr />
+            <h3>Description</h3>
+            <textarea rows="10" cols="20"></textarea>
+          </div>
         </div>
       </div>
     </div>

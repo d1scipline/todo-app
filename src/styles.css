@@ -173,7 +173,15 @@ hr {
   gap: 10px;
 }
 
-.priority[priority="4"] {
+.priority[priority="3"] {
+  background-color: #f17474;
+  color: #353841;
+  font-weight: 550;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.priority[priority="2"] {
   background-color: #f1ca74;
   color: #353841;
   font-weight: 550;
@@ -207,4 +215,43 @@ textarea {
   font-size: medium;
   font-weight: 500;
   border: #b2b2b2 solid 2px;
+  resize: none;
+}
+
+.item-due-date,
+.item-priority {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 550;
+  color: #353841;
+  font-size: medium;
+}
+
+.task-item-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.save-button,
+.delete-button {
+  flex-grow: 1;
+  padding: 5px 15px;
+  margin: 20px;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  font-size: medium;
+}
+
+.save-button {
+  background-color: #4292e3;
+}
+
+.delete-button {
+  background-color: #e04845;
+}
+
+.todo-item {
+  height: 100%;
+  overflow: auto;
 }

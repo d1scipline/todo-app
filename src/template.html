@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -41,7 +41,7 @@
                 <span class="todo-item-text">Finish report</span>
               </div>
               <div class="todo-item-right">
-                <span class="priority" priority="4">High</span>
+                <span class="priority" priority="3">High</span>
                 <span class="due-date">Due: Sep 15</span>
               </div>
             </div>
@@ -54,6 +54,17 @@
               <div class="todo-item-right">
                 <span class="priority" priority="1">Low</span>
                 <span class="due-date">Due: Sep 17</span>
+              </div>
+            </div>
+            <hr />
+            <div class="todo-item">
+              <div class="todo-item-left">
+                <img class="checkbox-empty" src="assets/checkbox-empty.svg" />
+                <span class="todo-item-text">Decide on new features</span>
+              </div>
+              <div class="todo-item-right">
+                <span class="priority" priority="2">Medium</span>
+                <span class="due-date">Due: Sep 16</span>
               </div>
             </div>
             <hr />
@@ -70,14 +81,17 @@
               >Priority:
               <select name="priority">
                 <option value="1">Low</option>
-                <option value="2">Medium-Low</option>
-                <option value="3">Medium-High</option>
-                <option value="4">High</option>
+                <option value="2">Medium</option>
+                <option value="3">High</option>
               </select>
             </span>
             <hr />
             <h3>Description</h3>
             <textarea rows="10" cols="20"></textarea>
+          </div>
+          <div class="task-item-buttons">
+            <button class="save-button">Save</button>
+            <button class="delete-button">Delete</button>
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ export class todoItem {
     this.dueDate = dueDate;
     this.priority = priority; //3 most important 0 least important
     this.isDone = 0;
+    this.id = crypto.randomUUID();
   }
 
   changeIsDoneStatus() {
@@ -54,6 +55,7 @@ export class Project {
   constructor(name) {
     this.name = name;
     this.todoList = [];
+    this.id = crypto.randomUUID();
   }
 
   //Takes todoItem and adds it to the list
@@ -100,7 +102,8 @@ export class Project {
   }
 
   //Removes the todo item at given index, returns 0 if the item does not exist
-  removeItem(itemIndex) {
+  removeItem(itemId) {
+    let itemIndex = this.todoList.findIndex((a) => a.id === itemId);
     if (this.todoList[itemIndex]) {
       this.todoList.splice(itemIndex, 1);
       return 1;
@@ -169,21 +172,21 @@ const item1 = new todoItem(
   "Buy arduino",
   "Order an arduino online",
   new Date("2025", "11", "26"),
-  3
+  3,
 );
 
 const item2 = new todoItem(
   "Get 3D Printer",
   "Buy a 3d printer",
   new Date("2025", "11", "25"),
-  2
+  2,
 );
 
 const item3 = new todoItem(
   "Assignment submission",
   "Submit your assignment",
   new Date("2025", "12", "3"),
-  3
+  3,
 );
 
 newProject.addItem(item1);

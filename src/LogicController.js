@@ -19,11 +19,9 @@ export class LogicController {
   }
 
   // Add task to project with project id
-  addTasktoProject(title, description, dueDate, priority, project_id) {
+  addTasktoProject(task, project_id) {
     let proj = this.projects_list.findIndex((a) => a.id === project_id);
-    projects_list[proj].addItem(
-      new todoItem(title, description, dueDate, priority),
-    );
+    projects_list[proj].addItem(task);
   }
 
   // Remove task from project with ids
@@ -36,5 +34,10 @@ export class LogicController {
   getProject(project_id) {
     let proj_ind = this.projects_list.findIndex((a) => a.id === project_id);
     return this.projects_list[proj_ind];
+  }
+
+  checkOffItem(project_id, item_id) {
+    let proj_ind = this.projects_list.findIndex((a) => a.id === project_id);
+    this.projects_list[proj_ind].checkOffItem(item_id);
   }
 }

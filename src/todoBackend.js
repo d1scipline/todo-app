@@ -113,7 +113,9 @@ export class Project {
   }
 
   //This is basically a toggle switch something lol
-  checkOffItem(index) {
+  checkOffItem(itemId) {
+    let index = this.todoList.findIndex((a) => a.id === itemId);
+
     if (this.todoList[index]) {
       this.todoList[index].changeIsDoneStatus();
       return 1;

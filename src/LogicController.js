@@ -24,10 +24,41 @@ export class LogicController {
     projects_list[proj].addItem(task);
   }
 
+  updateTask(task_id, title, description, dueDate, priority) {
+    var arrayLength = this.projects_list.length;
+    for (var i = 0; i < arrayLength; i++) {
+      let item_index = this.projects_list[i].findIndex((a) => a.id === task_id);
+      if (item_index == 0) {
+        this.projects_list[i].updateItem(
+          task_id,
+          title,
+          description,
+          dueDate,
+          priority,
+        );
+      }
+    }
+  }
+
+  getTask(task_id) {
+    var arrayLength = this.projects_list.length;
+    for (var i = 0; i < arrayLength; i++) {
+      let item_index = this.projects_list[i].findIndex((a) => a.id === task_id);
+      if (item_index == 0) {
+        this.projects_list[i].getItem(task_id);
+      }
+    }
+  }
+
   // Remove task from project with ids
-  removeTaskfromProject(task_id, project_id) {
-    let proj_ind = this.projects_list.findIndex((a) => a.id === project_id);
-    projects_list[proj_ind].removeItem(task_id);
+  removeTask(task_id) {
+    var arrayLength = this.projects_list.length;
+    for (var i = 0; i < arrayLength; i++) {
+      let item_index = this.projects_list[i].findIndex((a) => a.id === task_id);
+      if (item_index == 0) {
+        this.projects_list[i].removeItem(task_id);
+      }
+    }
   }
 
   // Get project by id
@@ -36,8 +67,22 @@ export class LogicController {
     return this.projects_list[proj_ind];
   }
 
-  checkOffItem(project_id, item_id) {
+  toggleItem(task_id) {
+    var arrayLength = this.projects_list.length;
+    for (var i = 0; i < arrayLength; i++) {
+      let item_index = this.projects_list[i].findIndex((a) => a.id === task_id);
+      if (item_index == 0) {
+        this.projects_list[i].toggleItem(task_id);
+      }
+    }
+  }
+
+  getAllProjects() {
+    return this.projects_list;
+  }
+
+  getTasks(project_id) {
     let proj_ind = this.projects_list.findIndex((a) => a.id === project_id);
-    this.projects_list[proj_ind].checkOffItem(item_id);
+    return this.projects_list[proj_ind].getAllItems();
   }
 }

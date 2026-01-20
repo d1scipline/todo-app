@@ -305,3 +305,18 @@ textarea {
   cursor: pointer;
   color: #8c96b3;
 }
+
+.tasks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-project-button {
+  height: 32px;
+  width: 32px;
+}
+
+.delete-project-button:hover {
+  cursor: pointer;
+}

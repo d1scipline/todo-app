@@ -72,7 +72,6 @@ export class UIController {
       if (!projectDiv) return;
       const projID = projectDiv.id;
       this.renderProject(projID);
-      console.log(projID);
     });
   }
 
@@ -138,8 +137,25 @@ export class UIController {
         todoItemRight.appendChild(dueDateSpan);
         todoItem.appendChild(todoItemRight);
         tasksList.appendChild(todoItem);
+        tasksList.appendChild(document.createElement("hr"));
       }
     }
+  }
+
+  deleteProject(project_id) {
+    this.LogicController.removeProject(project_id);
+    this.initialRender();
+  }
+
+  deleteProjectBinder() {
+    const button = document.getElementById("delete-project-button");
+    button.addEventListener("click", (e) => {
+      const id = document.getElementById("tasks-title");
+      console.log("HEHEAHJASN");
+      if (id.hasAttribute("projectid")) {
+        this.deleteProject(id.getAttribute("projectid"));
+      }
+    });
   }
 
   initialRender() {
@@ -157,6 +173,7 @@ export class UIController {
       3,
       this.LogicController.getAllProjects()[0].id,
     );
+    this.deleteProjectBinder();
     this.initialRender();
   }
 }

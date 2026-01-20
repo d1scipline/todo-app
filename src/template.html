@@ -10,14 +10,16 @@
       <div class="projects">
         <h1 class="projects-title">Projects</h1>
         <hr />
-        <div class="project-title">
-          <img class="folder-icon" src="assets/folder.svg" />Work
-        </div>
-        <div class="project-title">
-          <img class="folder-icon" src="assets/folder.svg" />Groceries
-        </div>
-        <div class="project-title">
-          <img class="folder-icon" src="assets/folder.svg" />Travel
+        <div id="projects-div">
+          <div class="project-title">
+            <img class="folder-icon" src="assets/folder.svg" />Work
+          </div>
+          <div class="project-title">
+            <img class="folder-icon" src="assets/folder.svg" />Groceries
+          </div>
+          <div class="project-title">
+            <img class="folder-icon" src="assets/folder.svg" />Travel
+          </div>
         </div>
         <hr />
         <button class="add-project-button">
@@ -97,11 +99,11 @@
       </div>
     </div>
     <dialog id="projectDialog">
-      <form method="dialog" class="addProjectDialog">
+      <form method="dialog" class="addProjectDialog" id="addProjectForm">
         <label for="project-title">Project Title: </label>
-        <input type="text" name="projectTitle" id="projectTitle" />
+        <input type="text" name="projectTitle" id="projectTitle" required />
         <div class="addProjectButtons">
-          <button id="addProject">Add Project</button>
+          <button type="submit" id="addProject">Add Project</button>
           <button id="cancelAddProject">Cancel</button>
         </div>
       </form>

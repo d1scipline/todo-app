@@ -300,3 +300,8 @@ textarea {
 #cancelAddProject {
   background-color: #e04845;
 }
+
+.project-title:hover {
+  cursor: pointer;
+  color: #8c96b3;
+}

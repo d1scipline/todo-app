@@ -21,7 +21,13 @@ export class LogicController {
   // Add task to project with project id
   addTasktoProject(task, project_id) {
     let proj = this.projects_list.findIndex((a) => a.id === project_id);
-    projects_list[proj].addItem(task);
+    this.projects_list[proj].addItem(task);
+  }
+
+  addTasktoProjectLong(title, description, dueDate, priority, project_id) {
+    const task = new todoItem(title, description, dueDate, priority);
+    let proj = this.projects_list.findIndex((a) => a.id === project_id);
+    this.projects_list[proj].addItem(task);
   }
 
   updateTask(task_id, title, description, dueDate, priority) {

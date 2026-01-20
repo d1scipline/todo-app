@@ -6,7 +6,7 @@ export class todoItem {
     this.description = description;
     this.creationDate = new Date();
     this.dueDate = dueDate;
-    this.priority = priority; //3 most important 0 least important
+    this.priority = priority; //3 most important 1 least important
     this.isDone = 0;
     this.id = crypto.randomUUID();
   }

@@ -255,3 +255,48 @@ textarea {
   height: 100%;
   overflow: auto;
 }
+
+#projectDialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20rem;
+  height: 10rem;
+  border-radius: 15px;
+  font-size: medium;
+  font-weight: 600;
+}
+
+.addProjectDialog {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#projectTitle {
+  padding: 5px;
+  border-radius: 3px;
+  font-size: medium;
+}
+
+.addProjectButtons {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.addProjectButtons button {
+  color: white;
+  background-color: #4292e3;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+#cancelAddProject {
+  background-color: #e04845;
+}

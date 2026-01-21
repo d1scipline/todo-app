@@ -389,3 +389,7 @@ textarea {
 .cancelAddTaskButton:focus {
   background-color: #fd524f;
 }
+
+.highlighted {
+  text-decoration: underline;
+}

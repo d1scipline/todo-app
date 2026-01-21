@@ -60,8 +60,9 @@ export class UIController {
       const formData = new FormData(e.target);
       const title = formData.get("projectTitle");
       if (title != "") {
-        this.LogicController.addProject(title);
+        let val = this.LogicController.addProject(title);
         this.renderProjects();
+        this.renderProject(val);
       }
       e.target.reset();
     });
@@ -140,6 +141,11 @@ export class UIController {
         tasksList.appendChild(todoItem);
         tasksList.appendChild(document.createElement("hr"));
       }
+    }
+    if (project_id != null) {
+      this.renderProjects();
+      const itemToHighlight = document.getElementById(project_id);
+      itemToHighlight.setAttribute("class", "project-title highlighted");
     }
   }
 

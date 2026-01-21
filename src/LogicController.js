@@ -8,6 +8,7 @@ export class LogicController {
   // Add project by name
   addProject(project_name) {
     this.projects_list.push(new Project(project_name));
+    return this.projects_list[this.projects_list.length - 1].id;
   }
 
   // Remove project by id

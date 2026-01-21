@@ -324,3 +324,68 @@ textarea {
 .checkbox:hover {
   cursor: pointer;
 }
+
+#taskDialog {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 25rem;
+  height: 20rem;
+  border-radius: 15px;
+  font-size: medium;
+  font-weight: 600;
+}
+
+#addTaskForm {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#addTaskForm label {
+  margin-top: 10px;
+}
+
+#taskTitle {
+  padding: 5px;
+  border-radius: 5px;
+  font-size: medium;
+}
+
+.addTaskButtons {
+  margin-top: 20px;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.addTaskButton,
+.cancelAddTaskButton {
+  background-color: #4292e3;
+  padding: 5px 15px;
+  border-radius: 5px;
+  color: white;
+}
+
+.addTaskButton:hover {
+  background-color: #3184d6;
+}
+
+.addTaskButton:focus {
+  background-color: #387abd;
+}
+
+.cancelAddTaskButton {
+  background-color: #e04845;
+}
+
+.cancelAddTaskButton:hover {
+  background-color: #e03d3b;
+}
+
+.cancelAddTaskButton:focus {
+  background-color: #fd524f;
+}

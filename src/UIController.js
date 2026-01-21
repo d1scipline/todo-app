@@ -181,9 +181,11 @@ export class UIController {
     });
   }
 
-  control() {
-    this.addProject(); //this stays
+  addTask() {
+    const TaskDialog = document.getElementById("taskDialog");
+  }
 
+  control() {
     this.LogicController.addProject("Example Project"); //Will delete this later
     this.LogicController.addTasktoProjectLong(
       "Test",
@@ -212,8 +214,10 @@ export class UIController {
       )[0].id,
     );
 
+    this.addProject();
     this.deleteProjectBinder();
     this.toggleTaskBinder();
     this.initialRender();
+    this.addTask();
   }
 }

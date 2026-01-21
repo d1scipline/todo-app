@@ -117,5 +117,29 @@
         </div>
       </form>
     </dialog>
+
+    <dialog id="taskDialog">
+      <form method="dialog" class="addTaskForm" id="addTaskForm">
+        <label for="taskTitle">Task Title:</label>
+        <input type="text" name="taskTitle" id="taskTitle" required />
+
+        <label for="taskDescription">Description:</label>
+        <textarea name="taskDescription" id="taskDescription"></textarea>
+
+        <label for="taskDueDate">Due Date:</label>
+        <input type="date" class="taskDueDate" id="taskDueDate" required />
+
+        <label for="taskPriority">Priority:</label>
+        <select name="taskPriority" id="taskPriority" required>
+          <option value="1">Low</option>
+          <option value="2">Medium</option>
+          <option value="3">High</option>
+        </select>
+        <div class="addTaskButtons">
+          <button type="submit" class="addTaskButton">Add Task</button>
+          <button class="cancelAddTaskButton">Cancel</button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>

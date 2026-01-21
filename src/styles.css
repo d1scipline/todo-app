@@ -320,3 +320,7 @@ textarea {
 .delete-project-button:hover {
   cursor: pointer;
 }
+
+.checkbox:hover {
+  cursor: pointer;
+}

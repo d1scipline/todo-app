@@ -105,11 +105,12 @@ export class UIController {
         const checkboxImg = document.createElement("img");
         if (items[i].isDone) {
           checkboxImg.setAttribute("src", checkboxFull);
-          checkboxImg.setAttribute("class", "checkbox-filled");
+          checkboxImg.setAttribute("class", "checkbox-filled checkbox");
         } else {
           checkboxImg.setAttribute("src", checkboxEmpty);
-          checkboxImg.setAttribute("class", "checkbox-empty");
+          checkboxImg.setAttribute("class", "checkbox-empty checkbox");
         }
+        checkboxImg.setAttribute("taskid", items[i].id);
         todoItemLeft.appendChild(checkboxImg);
 
         const todoItemText = document.createElement("span");
@@ -151,7 +152,6 @@ export class UIController {
     const button = document.getElementById("delete-project-button");
     button.addEventListener("click", (e) => {
       const id = document.getElementById("tasks-title");
-      console.log("HEHEAHJASN");
       if (id.hasAttribute("projectid")) {
         this.deleteProject(id.getAttribute("projectid"));
       }
@@ -163,8 +163,27 @@ export class UIController {
     this.renderProject();
   }
 
+  toggleTask(taskID) {
+    this.LogicController.toggleItem(taskID);
+    const projID = document
+      .getElementById("tasks-title")
+      .getAttribute("projectid");
+    this.renderProject(projID);
+  }
+
+  toggleTaskBinder() {
+    const tasksDOM = document.getElementById("tasks-todo");
+    tasksDOM.addEventListener("click", (e) => {
+      const itemDiv = e.target.closest(".checkbox");
+      if (!itemDiv) return;
+      const itemID = itemDiv.getAttribute("taskid");
+      this.toggleTask(itemID);
+    });
+  }
+
   control() {
     this.addProject(); //this stays
+
     this.LogicController.addProject("Example Project"); //Will delete this later
     this.LogicController.addTasktoProjectLong(
       "Test",
@@ -173,7 +192,28 @@ export class UIController {
       3,
       this.LogicController.getAllProjects()[0].id,
     );
+    this.LogicController.addTasktoProjectLong(
+      "Test",
+      "Stuff to do",
+      new Date("2025", "11", "26"),
+      2,
+      this.LogicController.getAllProjects()[0].id,
+    );
+    this.LogicController.addTasktoProjectLong(
+      "Test",
+      "Stuff to do",
+      new Date("2025", "11", "26"),
+      1,
+      this.LogicController.getAllProjects()[0].id,
+    );
+    this.LogicController.toggleItem(
+      this.LogicController.getTasks(
+        this.LogicController.getAllProjects()[0].id,
+      )[0].id,
+    );
+
     this.deleteProjectBinder();
+    this.toggleTaskBinder();
     this.initialRender();
   }
 }

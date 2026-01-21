@@ -76,8 +76,10 @@ export class LogicController {
   toggleItem(task_id) {
     var arrayLength = this.projects_list.length;
     for (var i = 0; i < arrayLength; i++) {
-      let item_index = this.projects_list[i].findIndex((a) => a.id === task_id);
-      if (item_index == 0) {
+      let item_index = this.projects_list[i]
+        .getAllItems()
+        .findIndex((a) => a.id === task_id);
+      if (item_index != -1) {
         this.projects_list[i].toggleItem(task_id);
       }
     }

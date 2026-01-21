@@ -252,8 +252,28 @@ export class UIController {
   }
 
   saveTask(e) {
-    console.log("SAVE");
-    this.clearTask();
+    //Logic Controller
+    const project_id = document
+      .getElementById("tasks-title")
+      .getAttribute("projectid");
+    const dueDate = document.getElementsByName("itemDueDate")[0].value;
+    const [year, month, day] = dueDate.split("-").map(Number);
+    const date = new Date(year, month - 1, day);
+    const priority = document.getElementById("selectPriority").value;
+    const description = document.getElementsByName("itemDescription")[0].value;
+    const task_id = document
+      .getElementsByClassName("task-item")[0]
+      .getAttribute("task-id");
+    const title =
+      document.getElementsByClassName("task-item-title")[0].innerHTML;
+    this.LogicController.updateTask(
+      task_id,
+      title,
+      description,
+      date,
+      priority,
+    );
+    this.renderProject(project_id);
   }
 
   deleteTask(e) {
@@ -261,7 +281,7 @@ export class UIController {
     const pid = project.getAttribute("projectid");
     const item = document.getElementsByClassName("task-item")[0];
     const id = item.getAttribute("task-id");
-    this.LogicController.removeTask(id);
+    this.LogicController.removeTask(id); //Logic controller
     this.clearTask();
     this.renderProject(pid);
   }

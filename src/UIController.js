@@ -251,6 +251,21 @@ export class UIController {
     }
   }
 
+  saveTask(e) {
+    console.log("SAVE");
+    this.clearTask();
+  }
+
+  deleteTask(e) {
+    const project = document.getElementById("tasks-title");
+    const pid = project.getAttribute("projectid");
+    const item = document.getElementsByClassName("task-item")[0];
+    const id = item.getAttribute("task-id");
+    this.LogicController.removeTask(id);
+    this.clearTask();
+    this.renderProject(pid);
+  }
+
   viewTask() {
     const tasksSection = document.getElementById("tasks-todo");
     const task_section = document.getElementsByClassName("task-section")[0];
@@ -350,6 +365,8 @@ export class UIController {
       taskItemButtonsDiv.appendChild(deleteButton);
       taskItemDiv.appendChild(taskItemButtonsDiv);
       task_section.appendChild(taskItemDiv);
+      saveButton.addEventListener("click", this.saveTask.bind(this));
+      deleteButton.addEventListener("click", this.deleteTask.bind(this));
     });
   }
 

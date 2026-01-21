@@ -35,7 +35,6 @@ export class Project {
     this.todoList.push(item);
   }
 
-  //Removes the todo item at given index, returns 0 if the item does not exist
   removeItem(itemId) {
     let itemIndex = this.todoList.findIndex((a) => a.id === itemId);
     if (this.todoList[itemIndex]) {
@@ -72,31 +71,3 @@ export class Project {
     return this.todoList[index];
   }
 }
-
-/*
-const newProject = new Project("Build Robot");
-const item1 = new todoItem(
-  "Buy arduino",
-  "Order an arduino online",
-  new Date("2025", "11", "26"),
-  3,
-);
-
-const item2 = new todoItem(
-  "Get 3D Printer",
-  "Buy a 3d printer",
-  new Date("2025", "11", "25"),
-  2,
-);
-
-const item3 = new todoItem(
-  "Assignment submission",
-  "Submit your assignment",
-  new Date("2025", "12", "3"),
-  3,
-);
-
-newProject.addItem(item1);
-newProject.addItem(item2);
-newProject.addItem(item3);
-*/

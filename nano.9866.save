@@ -1,0 +1,24 @@
+        <div class="task-item">
+          <h2 class="task-item-title">Finish report</h2>
+          <hr />
+          <div class="task-item-details">
+            <span class="item-due-date"
+              >Due Date: <input type="date" value="2026-09-17"
+            /></span>
+            <span class="item-priority"
+              >Priority:
+              <select name="priority">
+                <option value="1">Low</option>
+                <option value="2">Medium</option>
+                <option value="3">High</option>
+              </select>
+            </span>
+            <hr />
+            <h3>Description</h3>
+            <textarea rows="10" cols="20"></textarea>
+          </div>
+          <div class="task-item-buttons">
+            <button class="save-button">Save</button>
+            <button class="delete-button">Delete</button>
+          </div>
+	</div>

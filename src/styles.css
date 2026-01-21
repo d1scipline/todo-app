@@ -393,3 +393,8 @@ textarea {
 .highlighted {
   text-decoration: underline;
 }
+
+.todo-item-text:hover {
+  color: #5b606e;
+  cursor: pointer;
+}

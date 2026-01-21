@@ -37,6 +37,10 @@ export class UIController {
       newElement.appendChild(newContent);
       parentDiv.appendChild(newElement);
     }
+    const taskItemRemoval = document.getElementsByClassName("task-item")[0];
+    if (taskItemRemoval) {
+      taskItemRemoval.remove();
+    }
   }
 
   addProject() {
@@ -60,7 +64,7 @@ export class UIController {
       const formData = new FormData(e.target);
       const title = formData.get("projectTitle");
       if (title != "") {
-        let val = this.LogicController.addProject(title);
+        let val = this.LogicController.addProject(title); // LogicController
         this.renderProjects();
         this.renderProject(val);
       }
@@ -116,6 +120,7 @@ export class UIController {
 
         const todoItemText = document.createElement("span");
         todoItemText.setAttribute("class", "todo-item-text");
+        todoItemText.setAttribute("taskid", items[i].id);
         todoItemText.innerHTML = items[i].title;
         todoItemLeft.appendChild(todoItemText);
 
@@ -135,7 +140,7 @@ export class UIController {
 
         const dueDateSpan = document.createElement("span");
         dueDateSpan.setAttribute("class", "due-date");
-        dueDateSpan.innerHTML = "Due: " + format(items[i].dueDate, "MMM d");
+        dueDateSpan.innerHTML = "Due: " + format(items[i].dueDate, "MMM d y");
         todoItemRight.appendChild(dueDateSpan);
         todoItem.appendChild(todoItemRight);
         tasksList.appendChild(todoItem);
@@ -150,7 +155,7 @@ export class UIController {
   }
 
   deleteProject(project_id) {
-    this.LogicController.removeProject(project_id);
+    this.LogicController.removeProject(project_id); // LogicController
     this.initialRender();
   }
 
@@ -171,7 +176,7 @@ export class UIController {
   }
 
   toggleTask(taskID) {
-    this.LogicController.toggleItem(taskID);
+    this.LogicController.toggleItem(taskID); // LogicController
     const projID = document
       .getElementById("tasks-title")
       .getAttribute("projectid");
@@ -225,6 +230,7 @@ export class UIController {
         .getAttribute("projectid");
 
       if (title != "") {
+        // LogicController
         this.LogicController.addTasktoProjectLong(
           title,
           description,
@@ -238,25 +244,134 @@ export class UIController {
     });
   }
 
+  clearTask() {
+    const taskItemRemoval = document.getElementsByClassName("task-item")[0];
+    if (taskItemRemoval) {
+      taskItemRemoval.remove();
+    }
+  }
+
+  viewTask() {
+    const tasksSection = document.getElementById("tasks-todo");
+    const task_section = document.getElementsByClassName("task-section")[0];
+    tasksSection.addEventListener("click", (e) => {
+      this.clearTask();
+      const task = e.target.closest(".todo-item-text");
+      if (!task) return;
+      const taskID = task.getAttribute("taskid");
+      const taskItem = this.LogicController.getTask(taskID);
+      const title = taskItem.title;
+      const description = taskItem.description;
+      const dueDate = format(taskItem.dueDate, "MMM d y");
+      const dueDateVal = format(taskItem.dueDate, "yyyy-MM-dd");
+      const priority = taskItem.priority;
+      const priorityText = ["Low", "Medium", "High"][priority - 1];
+
+      const taskItemDiv = document.createElement("div");
+      taskItemDiv.setAttribute("class", "task-item");
+      taskItemDiv.setAttribute("task-id", taskID);
+
+      const taskItemTitle = document.createElement("h2");
+      taskItemTitle.setAttribute("class", "task-item-title");
+      taskItemTitle.innerHTML = title;
+      taskItemDiv.appendChild(taskItemTitle);
+
+      const hr = document.createElement("hr");
+      taskItemDiv.appendChild(hr.cloneNode(1));
+
+      const taskItemDetailsDiv = document.createElement("div");
+      taskItemDetailsDiv.setAttribute("class", "task-item-details");
+
+      const itemDueDate = document.createElement("span");
+      itemDueDate.setAttribute("class", "item-due-date");
+      itemDueDate.innerHTML = "Due Date: ";
+
+      const dueDateInput = document.createElement("input");
+      dueDateInput.setAttribute("type", "date");
+      dueDateInput.setAttribute("value", dueDateVal);
+      dueDateInput.setAttribute("name", "itemDueDate");
+      itemDueDate.appendChild(dueDateInput);
+      taskItemDetailsDiv.appendChild(itemDueDate);
+
+      const itemPriority = document.createElement("span");
+      itemPriority.setAttribute("class", "item-priority");
+      itemPriority.innerHTML = "Priority: ";
+      const itemPrioritySelect = document.createElement("select");
+      itemPrioritySelect.setAttribute("name", "priority");
+      itemPrioritySelect.setAttribute("id", "selectPriority");
+      const lowOption = document.createElement("option");
+      lowOption.setAttribute("value", "1");
+      lowOption.innerHTML = "Low";
+      const mediumOption = document.createElement("option");
+      mediumOption.setAttribute("value", "2");
+      mediumOption.innerHTML = "Medium";
+      const highOption = document.createElement("option");
+      highOption.setAttribute("value", "3");
+      highOption.innerHTML = "High";
+      if (priority == 3) {
+        highOption.setAttribute("selected", true);
+      } else {
+        if (priority == 2) {
+          mediumOption.setAttribute("selected", true);
+        } else {
+          lowOption.setAttribute("selected", true);
+        }
+      }
+
+      itemPrioritySelect.appendChild(lowOption);
+      itemPrioritySelect.appendChild(mediumOption);
+      itemPrioritySelect.appendChild(highOption);
+      itemPriority.appendChild(itemPrioritySelect);
+      taskItemDetailsDiv.appendChild(itemPriority);
+      taskItemDetailsDiv.appendChild(hr.cloneNode(1));
+
+      const itemDescription = document.createElement("h3");
+      itemDescription.innerHTML = "Description";
+      taskItemDetailsDiv.appendChild(itemDescription);
+
+      const descriptionInput = document.createElement("textarea");
+      descriptionInput.setAttribute("name", "itemDescription");
+      descriptionInput.setAttribute("rows", "10");
+      descriptionInput.setAttribute("cols", "20");
+      descriptionInput.value = description;
+      taskItemDetailsDiv.appendChild(descriptionInput);
+
+      taskItemDiv.appendChild(taskItemDetailsDiv);
+
+      const taskItemButtonsDiv = document.createElement("div");
+      taskItemButtonsDiv.setAttribute("class", "task-item-buttons");
+      const saveButton = document.createElement("button");
+      saveButton.setAttribute("class", "save-button");
+      saveButton.innerHTML = "Save";
+      const deleteButton = document.createElement("button");
+      deleteButton.setAttribute("class", "delete-button");
+      deleteButton.innerHTML = "Delete";
+      taskItemButtonsDiv.appendChild(saveButton);
+      taskItemButtonsDiv.appendChild(deleteButton);
+      taskItemDiv.appendChild(taskItemButtonsDiv);
+      task_section.appendChild(taskItemDiv);
+    });
+  }
+
   control() {
     this.LogicController.addProject("Example Project"); //Will delete this later
     this.LogicController.addTasktoProjectLong(
-      "Test",
-      "Stuff to do",
-      new Date("2025", "11", "26"),
+      "Test1",
+      "Stuff to do1",
+      new Date("2025", "11", "27"),
       3,
       this.LogicController.getAllProjects()[0].id,
     );
     this.LogicController.addTasktoProjectLong(
-      "Test",
-      "Stuff to do",
-      new Date("2025", "11", "26"),
+      "Test2",
+      "Stuff to do2",
+      new Date("2026", "1", "25"),
       2,
       this.LogicController.getAllProjects()[0].id,
     );
     this.LogicController.addTasktoProjectLong(
-      "Test",
-      "Stuff to do",
+      "Test3",
+      "Stuff to do3",
       new Date("2025", "11", "26"),
       1,
       this.LogicController.getAllProjects()[0].id,
@@ -272,5 +387,6 @@ export class UIController {
     this.toggleTaskBinder();
     this.initialRender();
     this.addTask();
+    this.viewTask();
   }
 }

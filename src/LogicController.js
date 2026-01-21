@@ -50,9 +50,11 @@ export class LogicController {
   getTask(task_id) {
     var arrayLength = this.projects_list.length;
     for (var i = 0; i < arrayLength; i++) {
-      let item_index = this.projects_list[i].findIndex((a) => a.id === task_id);
-      if (item_index == 0) {
-        this.projects_list[i].getItem(task_id);
+      let item_index = this.projects_list[i].todoList.findIndex(
+        (a) => a.id === task_id,
+      );
+      if (item_index != -1) {
+        return this.projects_list[i].getItem(task_id);
       }
     }
   }

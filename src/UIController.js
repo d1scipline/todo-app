@@ -154,6 +154,7 @@ export class UIController {
       const id = document.getElementById("tasks-title");
       if (id.hasAttribute("projectid")) {
         this.deleteProject(id.getAttribute("projectid"));
+        id.setAttribute("projectid", null);
       }
     });
   }
@@ -183,6 +184,52 @@ export class UIController {
 
   addTask() {
     const TaskDialog = document.getElementById("taskDialog");
+    const addTaskButton = document.getElementsByClassName("add-task-button")[0];
+    const cancelButton = document.getElementsByClassName(
+      "cancelAddTaskButton",
+    )[0];
+    const addTaskForm = document.getElementById("addTaskForm");
+
+    addTaskButton.addEventListener("click", () => {
+      const projectID = document
+        .getElementById("tasks-title")
+        .getAttribute("projectid");
+      if (projectID == null || projectID == "null") {
+        return;
+      } else {
+        TaskDialog.showModal();
+      }
+    });
+
+    cancelButton.addEventListener("click", () => {
+      TaskDialog.close("");
+      addTaskForm.reset();
+    });
+
+    addTaskForm.addEventListener("submit", (e) => {
+      const formData = new FormData(e.target);
+      const title = formData.get("taskTitle");
+      const description = formData.get("taskDescription");
+      const dateUnf = formData.get("taskDueDate");
+      const [year, month, day] = dateUnf.split("-").map(Number);
+      const date = new Date(year, month - 1, day);
+      const priority = formData.get("taskPriority");
+      const projectID = document
+        .getElementById("tasks-title")
+        .getAttribute("projectid");
+
+      if (title != "") {
+        this.LogicController.addTasktoProjectLong(
+          title,
+          description,
+          date,
+          priority,
+          projectID,
+        );
+      }
+      e.target.reset();
+      this.renderProject(projectID);
+    });
   }
 
   control() {

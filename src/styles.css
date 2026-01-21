@@ -394,7 +394,69 @@ textarea {
   text-decoration: underline;
 }
 
+.task-item-title:hover,
 .todo-item-text:hover {
   color: #5b606e;
   cursor: pointer;
+}
+
+#nameDialog {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 20rem;
+  height: 15rem;
+  border-radius: 15px;
+  font-size: medium;
+  font-weight: 600;
+}
+
+#changeNameForm {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#changeName {
+  padding: 5px;
+  border-radius: 5px;
+  font-size: medium;
+}
+
+.changeNameButtons {
+  margin-top: 20px;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+#changeNameButton,
+#cancelChangeName {
+  background-color: #4292e3;
+  padding: 5px 15px;
+  border-radius: 5px;
+  color: white;
+}
+
+#changeNameButton:hover {
+  background-color: #3184d6;
+}
+
+#changeNameButton:focus {
+  background-color: #387abd;
+}
+
+#cancelChangeName {
+  background-color: #e04845;
+}
+
+#cancelChangeName:hover {
+  background-color: #e03d3b;
+}
+
+#cancelChangeName:focus {
+  background-color: #fd524f;
 }

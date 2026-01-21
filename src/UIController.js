@@ -251,6 +251,32 @@ export class UIController {
     }
   }
 
+  changeTaskNameBinder() {
+    const modal = document.getElementById("nameDialog");
+    const cancel = document.getElementById("cancelChangeName");
+    const form = document.getElementById("changeNameForm");
+
+    cancel.addEventListener("click", () => {
+      modal.close("");
+      form.reset();
+    });
+
+    form.addEventListener("submit", (e) => {
+      const pid = document
+        .getElementById("tasks-title")
+        .getAttribute("projectid");
+
+      const id = document
+        .getElementsByClassName("task-item")[0]
+        .getAttribute("task-id");
+
+      const data = new FormData(e.target);
+      this.LogicController.updateTaskName(data.get("changeName"), id);
+      form.reset();
+      this.renderProject(pid);
+    });
+  }
+
   saveTask(e) {
     //Logic Controller
     const project_id = document
@@ -309,6 +335,10 @@ export class UIController {
       const taskItemTitle = document.createElement("h2");
       taskItemTitle.setAttribute("class", "task-item-title");
       taskItemTitle.innerHTML = title;
+      taskItemTitle.addEventListener("click", () => {
+        const modal = document.getElementById("nameDialog");
+        modal.showModal();
+      });
       taskItemDiv.appendChild(taskItemTitle);
 
       const hr = document.createElement("hr");
@@ -425,5 +455,6 @@ export class UIController {
     this.initialRender();
     this.addTask();
     this.viewTask();
+    this.changeTaskNameBinder();
   }
 }

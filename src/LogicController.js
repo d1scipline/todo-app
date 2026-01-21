@@ -92,6 +92,11 @@ export class LogicController {
     }
   }
 
+  updateTaskName(name, id) {
+    const task = this.getTask(id);
+    this.updateTask(id, name, task.description, task.dueDate, task.priority);
+  }
+
   getAllProjects() {
     return this.projects_list;
   }

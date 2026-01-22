@@ -1,4 +1,5 @@
 import { todoItem, Project } from "./todoBackend";
+import { format } from "date-fns";
 
 export class LogicController {
   constructor(projects_list) {
@@ -104,5 +105,34 @@ export class LogicController {
   getTasks(project_id) {
     let proj_ind = this.projects_list.findIndex((a) => a.id === project_id);
     return this.projects_list[proj_ind].getAllItems();
+  }
+
+  exportDataAsJSON() {
+    var jsonData = {};
+
+    let len = this.projects_list.length;
+    for (let i = 0; i < len; i++) {
+      var projectName = this.projects_list[i].name;
+      var projectID = this.projects_list[i].id;
+      var subObject = {};
+      subObject["name"] = projectName;
+      subObject["list"] = {};
+
+      let lenPro = this.projects_list[i].getAllItems().length;
+
+      for (let j = 0; j < lenPro; j++) {
+        var itemObject = {};
+        var task = this.projects_list[i].getAllItems()[j];
+        itemObject["title"] = task.title;
+        itemObject["description"] = task.description;
+        var date = format(task.dueDate, "yyyy-MM-dd");
+        itemObject["dueDate"] = date;
+        itemObject["priority"] = task.priority.toString();
+        subObject["list"][task.id] = itemObject;
+      }
+
+      jsonData[projectID] = subObject;
+    }
+    return jsonData;
   }
 }

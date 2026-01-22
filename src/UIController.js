@@ -271,7 +271,7 @@ export class UIController {
         .getAttribute("task-id");
 
       const data = new FormData(e.target);
-      this.LogicController.updateTaskName(data.get("changeName"), id);
+      this.LogicController.updateTaskName(data.get("changeName"), id); //Logic controller
       form.reset();
       this.renderProject(pid);
     });

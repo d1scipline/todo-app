@@ -486,3 +486,11 @@ textarea {
 .delete-button:focus {
   background-color: #ec5250;
 }
+
+.item-due-date {
+  margin-right: 6px;
+}
+
+.item-priority {
+  margin-right: 6px;
+}

@@ -460,3 +460,29 @@ textarea {
 #cancelChangeName:focus {
   background-color: #fd524f;
 }
+
+.add-project-button:hover span {
+  color: #387abd;
+}
+
+#addProject:hover,
+.add-task-button:hover,
+.save-button:hover {
+  background-color: #387abd;
+}
+
+#addProject:focus,
+.add-task-button:focus,
+.save-button:focus {
+  background-color: #4292e3;
+}
+
+#cancelAddProject:hover,
+.delete-button:hover {
+  background-color: #e03d3b;
+}
+
+#cancelAddProject:focus,
+.delete-button:focus {
+  background-color: #ec5250;
+}

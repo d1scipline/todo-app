@@ -135,4 +135,26 @@ export class LogicController {
     }
     return jsonData;
   }
+
+  importDataFromJSON(data) {
+    var projList = [];
+    for (const project in data) {
+      var projectJSONObj = data[project];
+      var name = projectJSONObj["name"];
+      var projectObject = new Project(name);
+      for (const task in projectJSONObj["list"]) {
+        var taskJSONObj = projectJSONObj["list"][task];
+        var title = taskJSONObj["title"];
+        var description = taskJSONObj["description"];
+        var date = taskJSONObj["dueDate"];
+        var [year, month, day] = date.split("-").map(Number);
+        var dueDate = new Date(year, month - 1, day);
+        var priority = Number(taskJSONObj["priority"]);
+        var taskObject = new todoItem(title, description, dueDate, priority);
+        projectObject.addItem(taskObject);
+      }
+      projList.push(projectObject);
+    }
+    return projList;
+  }
 }

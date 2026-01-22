@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do App</title>
+  <script defer src="main.js"></script></head>
+  <body>
+    <div class="main">
+      <div class="projects">
+        <h1 class="projects-title">Projects</h1>
+        <hr />
+        <div id="projects-div">
+          <div class="project-title">
+            <img class="folder-icon" src="cec5458d699fbd4484b5.svg" />Work
+          </div>
+          <div class="project-title">
+            <img class="folder-icon" src="cec5458d699fbd4484b5.svg" />Groceries
+          </div>
+          <div class="project-title">
+            <img class="folder-icon" src="cec5458d699fbd4484b5.svg" />Travel
+          </div>
+        </div>
+        <hr />
+        <button class="add-project-button">
+          <img class="button-icon" src="bbbae32cd7ab0f1b1d69.svg" />
+          <span class="button-text">Add Project</span>
+        </button>
+      </div>
+
+      <div class="task-section" id="task-section">
+        <div class="tasks">
+          <div class="tasks-header">
+            <h1 class="tasks-title" id="tasks-title">Work</h1>
+            <img
+              class="delete-project-button"
+              id="delete-project-button"
+              src="ba2e8fd8c26ffa84c891.svg"
+            />
+          </div>
+          <hr />
+          <button class="add-task-button">
+            <img class="add-task-icon" src="598aa16514ece73fcd42.svg" />
+            <span class="add-task-text">Add Task</span>
+          </button>
+          <hr />
+          <div class="tasks-todo" id="tasks-todo">
+            <div class="todo-item">
+              <div class="todo-item-left">
+                <img class="checkbox-empty" src="dbe5c319800670a5cc4d.svg" />
+                <span class="todo-item-text">Finish report</span>
+              </div>
+              <div class="todo-item-right">
+                <span class="priority" priority="3">High</span>
+                <span class="due-date">Due: Sep 15</span>
+              </div>
+            </div>
+            <hr />
+            <div class="todo-item">
+              <div class="todo-item-left">
+                <img class="checkbox-filled" src="a45f7fa837e3506d63ab.svg" />
+                <span class="todo-item-text">Submit code</span>
+              </div>
+              <div class="todo-item-right">
+                <span class="priority" priority="1">Low</span>
+                <span class="due-date">Due: Sep 17</span>
+              </div>
+            </div>
+            <hr />
+            <div class="todo-item">
+              <div class="todo-item-left">
+                <img class="checkbox-empty" src="dbe5c319800670a5cc4d.svg" />
+                <span class="todo-item-text">Decide on new features</span>
+              </div>
+              <div class="todo-item-right">
+                <span class="priority" priority="2">Medium</span>
+                <span class="due-date">Due: Sep 16</span>
+              </div>
+            </div>
+            <hr />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <dialog id="projectDialog">
+      <form method="dialog" class="addProjectDialog" id="addProjectForm">
+        <label for="project-title">Project Title: </label>
+        <input type="text" name="projectTitle" id="projectTitle" required />
+        <div class="addProjectButtons">
+          <button type="submit" id="addProject">Add Project</button>
+          <button id="cancelAddProject">Cancel</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="taskDialog">
+      <form method="dialog" class="addTaskForm" id="addTaskForm">
+        <label for="taskTitle">Task Title:</label>
+        <input type="text" name="taskTitle" id="taskTitle" required />
+
+        <label for="taskDescription">Description:</label>
+        <textarea name="taskDescription" id="taskDescription"></textarea>
+
+        <label for="taskDueDate">Due Date:</label>
+        <input type="date" name="taskDueDate" id="taskDueDate" required />
+
+        <label for="taskPriority">Priority:</label>
+        <select name="taskPriority" id="taskPriority" required>
+          <option value="1">Low</option>
+          <option value="2">Medium</option>
+          <option value="3">High</option>
+        </select>
+        <div class="addTaskButtons">
+          <button type="submit" class="addTaskButton">Add Task</button>
+          <button class="cancelAddTaskButton">Cancel</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="nameDialog">
+      <form method="dialog" class="changeNameDialog" id="changeNameForm">
+        <label for="changeName">New Task Title: </label>
+        <input type="text" name="changeName" id="changeName" required />
+        <div class="changeNameButtons">
+          <button type="submit" id="changeNameButton">Change Name</button>
+          <button id="cancelChangeName">Cancel</button>
+        </div>
+      </form>
+    </dialog>
+  </body>
+</html>

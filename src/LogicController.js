@@ -2,14 +2,15 @@ import { todoItem, Project } from "./todoBackend";
 import { format } from "date-fns";
 
 export class LogicController {
-  constructor(projects_list) {
-    this.projects_list = projects_list;
+  constructor() {
+    this.projects_list = this.loadData();
   }
 
   // Add project by name
   addProject(project_name) {
     this.projects_list.push(new Project(project_name));
     return this.projects_list[this.projects_list.length - 1].id;
+    this.saveData();
   }
 
   // Remove project by id
@@ -18,18 +19,21 @@ export class LogicController {
     if (rem !== -1) {
       this.projects_list.splice(rem, 1);
     }
+    this.saveData();
   }
 
   // Add task to project with project id
   addTasktoProject(task, project_id) {
     let proj = this.projects_list.findIndex((a) => a.id === project_id);
     this.projects_list[proj].addItem(task);
+    this.saveData();
   }
 
   addTasktoProjectLong(title, description, dueDate, priority, project_id) {
     const task = new todoItem(title, description, dueDate, priority);
     let proj = this.projects_list.findIndex((a) => a.id === project_id);
     this.projects_list[proj].addItem(task);
+    this.saveData();
   }
 
   updateTask(task_id, title, description, dueDate, priority) {
@@ -48,6 +52,7 @@ export class LogicController {
         );
       }
     }
+    this.saveData();
   }
 
   getTask(task_id) {
@@ -73,6 +78,7 @@ export class LogicController {
         this.projects_list[i].removeItem(task_id);
       }
     }
+    this.saveData();
   }
 
   // Get project by id
@@ -89,6 +95,7 @@ export class LogicController {
         .findIndex((a) => a.id === task_id);
       if (item_index != -1) {
         this.projects_list[i].toggleItem(task_id);
+        this.saveData();
       }
     }
   }
@@ -96,6 +103,7 @@ export class LogicController {
   updateTaskName(name, id) {
     const task = this.getTask(id);
     this.updateTask(id, name, task.description, task.dueDate, task.priority);
+    this.saveData();
   }
 
   getAllProjects() {
@@ -128,6 +136,7 @@ export class LogicController {
         var date = format(task.dueDate, "yyyy-MM-dd");
         itemObject["dueDate"] = date;
         itemObject["priority"] = task.priority.toString();
+        itemObject["isDone"] = task.isDone.toString();
         subObject["list"][task.id] = itemObject;
       }
 
@@ -150,11 +159,35 @@ export class LogicController {
         var [year, month, day] = date.split("-").map(Number);
         var dueDate = new Date(year, month - 1, day);
         var priority = Number(taskJSONObj["priority"]);
-        var taskObject = new todoItem(title, description, dueDate, priority);
+        var isDone = Number(taskJSONObj["isDone"]);
+        var taskObject = new todoItem(
+          title,
+          description,
+          dueDate,
+          priority,
+          isDone,
+        );
         projectObject.addItem(taskObject);
       }
       projList.push(projectObject);
     }
     return projList;
+  }
+
+  loadData() {
+    const dataString = localStorage.getItem("todoData");
+    var obj = {};
+    if (dataString == null) {
+      obj = {};
+    } else {
+      obj = JSON.parse(dataString);
+    }
+    return this.importDataFromJSON(obj);
+  }
+
+  saveData() {
+    const dataObj = this.exportDataAsJSON();
+    const dataJSON = JSON.stringify(dataObj);
+    localStorage.setItem("todoData", dataJSON);
   }
 }

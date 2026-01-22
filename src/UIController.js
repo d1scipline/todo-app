@@ -421,34 +421,6 @@ export class UIController {
   }
 
   control() {
-    this.LogicController.addProject("Example Project"); //Will delete this later
-    this.LogicController.addTasktoProjectLong(
-      "Test1",
-      "Stuff to do1",
-      new Date("2025", "11", "27"),
-      3,
-      this.LogicController.getAllProjects()[0].id,
-    );
-    this.LogicController.addTasktoProjectLong(
-      "Test2",
-      "Stuff to do2",
-      new Date("2026", "1", "25"),
-      2,
-      this.LogicController.getAllProjects()[0].id,
-    );
-    this.LogicController.addTasktoProjectLong(
-      "Test3",
-      "Stuff to do3",
-      new Date("2025", "11", "26"),
-      1,
-      this.LogicController.getAllProjects()[0].id,
-    );
-    this.LogicController.toggleItem(
-      this.LogicController.getTasks(
-        this.LogicController.getAllProjects()[0].id,
-      )[0].id,
-    );
-
     this.addProject();
     this.deleteProjectBinder();
     this.toggleTaskBinder();
